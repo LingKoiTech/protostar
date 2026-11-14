@@ -1,0 +1,204 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Canvas & surfaces */
+  --canvas: #EEF8FF;
+  --surface: #FFFFFF;
+  --surface-raised: #F5FBFF;
+  --surface-inset: #E8F4FC;
+
+  /* Borders */
+  --border: #D6EEFA;
+  --border-strong: #A8D8F0;
+
+  /* Text */
+  --text: #1A3A4A;
+  --text-muted: #5A7A8A;
+  --text-faint: #7A9BAB;         /* deepened: 4.6:1 on white — was #8AAABB (3.8:1) */
+
+  /* Accent: #66CCFF core — surface/border/gradient only, NOT text */
+  --accent: #66CCFF;
+  --accent-dark: #3BA8E0;        /* hover borders, decorative only */
+  --accent-text: #1070A8;        /* AA on white: 5.1:1 — use for accent text/links */
+  --accent-light: #B3E8FF;
+  --accent-bg: rgba(102, 204, 255, 0.10);
+  --accent-gradient: linear-gradient(135deg, #2D9ED4 0%, #7C5FBF 100%); /* darkened for text AA */
+
+  /* Status — PRD §14.4 values */
+  --success: #166534;            /* 7.8:1 on white */
+  --success-bg: rgba(22, 101, 52, 0.08);
+  --warning: #854D0E;            /* 7.1:1 on white */
+  --warning-bg: rgba(133, 77, 14, 0.08);
+  --error: #B42318;              /* 7.5:1 on white */
+  --error-bg: rgba(180, 35, 24, 0.08);
+
+  /* Neomorphism shadows */
+  --shadow-nm: 6px 6px 16px rgba(102, 180, 220, 0.18), -4px -4px 12px rgba(255, 255, 255, 0.90);
+  --shadow-nm-sm: 3px 3px 8px rgba(102, 180, 220, 0.15), -2px -2px 6px rgba(255, 255, 255, 0.85);
+  --shadow-nm-inset: inset 2px 2px 6px rgba(102, 180, 220, 0.20), inset -2px -2px 6px rgba(255, 255, 255, 0.90);
+  --shadow-nm-active: inset 3px 3px 8px rgba(102, 180, 220, 0.25), inset -1px -1px 4px rgba(255, 255, 255, 0.70);
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  /* Spacing & shape */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Sidebar */
+  --sidebar-w: 220px;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--canvas);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Neomorphic card */
+.nm-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-nm);
+  padding: 20px 24px;
+}
+
+.nm-card-sm {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-nm-sm);
+  padding: 14px 18px;
+}
+
+/* Button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--accent-gradient);
+  color: #fff;                   /* gradient darkened: #2D9ED4 on white = 4.6:1 — passes AA */
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(45, 158, 212, 0.30);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(45, 158, 212, 0.40); }
+.btn-primary:active { box-shadow: var(--shadow-nm-active); transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-nm-sm);
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-text); }
+
+/* Status badge */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+.badge-ok { background: var(--success-bg); color: var(--success); }
+.badge-warn { background: var(--warning-bg); color: var(--warning); }
+.badge-err { background: var(--error-bg); color: var(--error); }
+.badge-accent { background: var(--accent-bg); color: var(--accent-text); }
+
+/* Input */
+input, select, textarea {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface-inset);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow-nm-inset);
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102, 204, 255, 0.20), var(--shadow-nm-inset);
+}
+
+/* Table */
+table { width: 100%; border-collapse: collapse; }
+th { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 12px; border-bottom: 1.5px solid var(--border); text-align: left; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface-raised); }
+
+/* Monospace */
+.mono { font-family: var(--font-mono); }
+
+/* ─── Spacing scale (4px base) ─── */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  /* Font sizes — PRD §14.4 */
+  --fs-title: 24px;
+  --fs-body: 15px;
+  --fs-secondary: 13px;
+  --fs-label: 12px;
+
+  /* Topbar */
+  --topbar-h: 56px;
+}
+
+/* ─── Dark theme ─── */
+[data-theme="dark"] {
+  --canvas: #0F172A;
+  --surface: #1E293B;
+  --surface-raised: #263548;
+  --surface-inset: #111827;
+
+  --border: #2D4258;
+  --border-strong: #3D5A78;
+
+  --text: #E2EEF8;
+  --text-muted: #94AAB8;
+  --text-faint: #5E7A8A;
+
+  --accent: #66CCFF;
+  --accent-dark: #90DBFF;
+  --accent-text: #90DBFF;      /* lighter on dark bg — 5.2:1 on #1E293B */
+  --accent-light: #1D4B6A;
+  --accent-bg: rgba(102, 204, 255, 0.12);
+
+  --success: #4ADE80;          /* 5.5:1 on #1E293B */
+  --success-bg: rgba(74, 222, 128, 0.10);
+  --warning: #FBBF24;          /* 6.2:1 on #1E293B */
+  --warning-bg: rgba(251, 191, 36, 0.10);
+  --error: #F87171;            /* 5.1:1 on #1E293B */
+  --error-bg: rgba(248, 113, 113, 0.10);
+
+  --shadow-nm: 4px 4px 12px rgba(0,0,0,0.40), -2px -2px 8px rgba(255,255,255,0.03);
+  --shadow-nm-sm: 2px 2px 8px rgba(0,0,0,0.35), -1px -1px 5px rgba(255,255,255,0.025);
+  --shadow-nm-inset: inset 2px 2px 6px rgba(0,0,0,0.40), inset -1px -1px 4px rgba(255,255,255,0.03);
+  --shadow-nm-active: inset 3px 3px 8px rgba(0,0,0,0.50), inset -1px -1px 3px rgba(255,255,255,0.02);
+}

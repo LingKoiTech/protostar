@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# 本机临时资料与本地路径记录
+docs/temp/
+
+# 002 模块本地状态
+protostar_worker/worker/local_state.db
+.next/
+node_modules/

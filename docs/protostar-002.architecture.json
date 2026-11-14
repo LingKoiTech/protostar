@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Protostar 002 — 最小自举构建循环",
+    "output": "protostar-002.architecture.html",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "views": [
+      {
+        "id": "submit-path",
+        "label": "需求提交到批准",
+        "focus": ["operator", "gui", "server", "db"],
+        "note": "操作者通过浏览器登记需求、上传产物、逐层批准 spec→plan→tasks。"
+      },
+      {
+        "id": "run-path",
+        "label": "运行执行链路",
+        "focus": ["operator", "gui", "server", "worker", "omp", "db"],
+        "note": "tasks 批准后显式启动 Run，worker 轮询领取任务、调用 OMP 执行、回传结果。"
+      }
+    ]
+  },
+  "components": [
+    { "id": "operator", "type": "external", "label": "操作者", "sublabel": "浏览器 / curl", "pos": [40, 280], "size": [120, 60] },
+    { "id": "gui", "type": "frontend", "label": "protostar_gui", "sublabel": "Next.js :3000", "pos": [220, 280], "size": [140, 60] },
+    { "id": "server", "type": "backend", "label": "protostar_server", "sublabel": "FastAPI :8000", "pos": [440, 280], "size": [150, 60] },
+    { "id": "db", "type": "database", "label": "PostgreSQL", "sublabel": "protostar_dev", "pos": [660, 280], "size": [140, 60] },
+    { "id": "worker", "type": "backend", "label": "protostar_worker", "sublabel": "stdlib polling", "pos": [440, 460], "size": [150, 60] },
+    { "id": "omp", "type": "external", "label": "OMP CLI", "sublabel": "omp run <task_ref>", "pos": [660, 460], "size": [140, 60] },
+    { "id": "localdb", "type": "database", "label": "local_state.db", "sublabel": "SQLite", "pos": [220, 460], "size": [140, 60] }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "127.0.0.1 仅本机",
+      "wraps": ["gui", "server", "db", "worker", "localdb"]
+    }
+  ],
+  "connections": [
+    { "id": "op-gui", "from": "operator", "to": "gui", "label": "浏览器", "variant": "emphasis" },
+    { "id": "gui-server", "from": "gui", "to": "server", "label": "/api/v1 rewrites", "labelDy": -17 },
+    { "id": "server-db", "from": "server", "to": "db", "label": "SQLAlchemy async", "labelDy": -24 },
+    { "id": "worker-server", "from": "worker", "to": "server", "label": "Bearer 轮询", "fromSide": "top", "toSide": "bottom" },
+    { "id": "worker-omp", "from": "worker", "to": "omp", "label": "subprocess", "variant": "emphasis" },
+    { "id": "worker-localdb", "from": "worker", "to": "localdb", "label": "sqlite3 状态", "variant": "dashed" },
+    { "id": "op-server", "from": "operator", "to": "server", "label": "curl 直连", "variant": "dashed", "fromSide": "bottom", "toSide": "left" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "批准链路（人工）", "items": ["spec → plan → tasks 顺序批准", "越序返回 403", "approver 由 session 解析，不可伪造"] },
+    { "dot": "emerald", "title": "执行链路（自动）", "items": ["POST /runs 显式启动", "worker 领取：SELECT FOR UPDATE SKIP LOCKED", "OMP subprocess 在隔离 tempdir 执行", "stdout/stderr 超 8KB 截断"] },
+    { "dot": "rose", "title": "002 范围约束", "items": ["单 worker，无多实例", "仅本机 127.0.0.1 绑定", "本地账户 + cookie，无 OIDC"] }
+  ]
+}

@@ -1,50 +1,146 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+版本：未实例化模板 → 1.0.0（送审，尚未生效）。
+原则：I 独立产品与单一权威；II 版本绑定与逐层批准；III 数据边界与来源；
+IV 真实验证与失败处理；V 可观察执行与完整交付。
+新增章节：产品边界与安全要求；开发流程与版本交付；治理生效与批准记录。
+模板中的示例与占位字段已由项目正文替换，模板源文件保持。
+批准人、批准日期、批准范围与 Ratified 留空，等待 HumanMiao 对本版本作出决定。
+-->
+# Protostar Constitution
+
+**状态**：1.0.0 正式治理正文送审稿，待 HumanMiao 审批，尚未生效。
+
+Protostar（将明）是泠鱼科技（LingKoiTech）的独立公开项目。本文件规定项目需求、
+代理协作、数据边界、验证与版本交付要求。正文编写完成与治理批准分别记录，
+当前正文不授予任何阶段批准、代码合入、发布或关单权限。
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. 独立产品与单一权威
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+- 产品范围 MUST 追溯到本仓 `docs/PRD.md` 与已批准的编号 spec；历史记录、目录和设计说明
+  MUST NOT 被认定为当前实现或运行证据。
+- 项目 MUST 使用六个明确责任的模块：`protostar_server` 管理需求、批准、图、调度与业务数据；
+  `protostar_worker` 执行获准任务、管理后端进程与回传事件；`protostar_cli` 提供命令行操作；
+  `protostar_mcp` 提供受权限限制的 tools 与 resources；`protostar_skills` 提供工作流指引并经 CLI
+  执行动作；`protostar_gui` 提供用户界面。调用入口 MUST 复用相同业务规则与权限检查。
+- 每类业务数据、API 与 session 的权威范围 MUST 明确；迁移 MUST 记录来源、目标、ID 映射、
+  调用方切换、验证、失败处理及旧端停止写入条件，不保留长期重复的业务权威。
+- Protostar MUST 能脱离其他项目源码与私有服务独立使用。旧端资料仅作为已授权的行为研究或
+  可选数据导入来源；未经批准不得迁移业务代码、生产数据或部署服务。
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. 版本绑定与逐层批准
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+- 每项需求 MUST 按 spec → plan → tasks → implement 顺序进行。001 总览与正式 constitution
+  MUST 分别取得 HumanMiao 对具体版本的批准后，才编写 001 plan；001 plan 获批后才编写
+  001 tasks；001 tasks 获批后才编写 002 spec。后续编号遵循同一逐层批准规则。
+- 每项批准 MUST 能识别审批对象、文件版本或 SHA-256、批准人、原始决定及适用范围。
+  产物内容改变后 MUST 重新审核受影响版本；历史批准不得沿用到不同正文。
+- 主线程 MUST 亲自审核阶段产物并提交 HumanMiao。主线程独占权威 `spec.md`；Plan subagent
+  与 Tasks subagent 在上层获批后分别独占对应 `plan.md` 与 `tasks.md`。其他子代理
+  MUST NOT 编写或审核这些阶段产物。
+- Agent 和服务身份 MUST NOT 代替 HumanMiao 产生批准，也不得填写不存在的批准人、日期
+  或范围。待审批的批准栏 MUST 保持空白，编写授权、验证通过与批准状态分别保存。
+- 暂存、提交、代码合入、版本发布、部署与关单 MUST 在各自明确授权范围内执行；
+  不得以文档批准或任务完成替代这些操作的授权。
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. 数据边界与来源
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- 组织、项目、用户、服务身份和知识来源 MUST 具有明确权限范围。请求与异步任务 MUST
+  使用相同授权边界；服务端负责权限判定，界面隐藏控件不能替代服务端检查。
+- 私人文档、私有记忆、凭据与未公开代码 MUST 保持授权范围；读取、复制、发布或发送到
+  模型与知识服务 MUST 分别符合数据所有者授权。授权摘录不得扩展为私人全文处理。
+- 公开正文 MUST 使用 Protostar 与 LingKoiTech 的主体说明、仓内相对导航及公开官方引用。
+  私有主机地址、个人绝对路径、真实内部标识与凭据值 MUST NOT 进入公开文件。
+- 公开整理副本 MUST 保留来源编号、原文与副本 SHA-256、改名映射及逐行差异；原件保持
+  原始字节。API 路由、字段、状态及需求编号 MUST 逐项核对，哈希只证明字节完整性。
+- 原始私有路径、完整映射与本机验证资料 MUST 保存在已忽略的本机目录，公开正文的阅读
+  不得依赖这些目录。第三方许可与来源署名 MUST 保留，并与项目主体说明分别管理。
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. 真实验证与失败处理
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- 实现 MUST 遵循 Test-First。需求行为和已报告缺陷构成验证依据；存在覆盖路径的测试时
+  MUST 复用，新增测试仅用于尚未覆盖的用户可见风险。修改完成后执行针对性检查并保存真实输出。
+- 测试 MUST 可重复、隔离且适合完整测试集运行；涉及数据库、后端进程、CLI、MCP、界面或
+  外部连接的验收 MUST 使用对应真实能力，不得通过模拟输出、无效占位实现或空操作证明成功。
+- 每次验收 MUST 保存输入条件、命令、退出码、结果与关联产物。环境依赖不可用、权限不足、
+  外部服务失败与产品缺陷 MUST 分别说明，不得跳过失败检查后报告完成。
+- 非预期错误 MUST 在发生位置保留原因并停止受影响操作；不得静默吞掉异常、返回成功空值
+  或自动替换未经授权的模型、后端与数据来源。
+- Web 功能 MUST 在实际浏览器表面验证；CLI 与 worker MUST 通过真实命令和进程验证。
+  文档检查、静态分析、目录与脚手架 MUST NOT 代替产品运行验收。
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. 可观察执行与完整交付
+
+- 每次任务执行 MUST 关联需求、产物版本、job attempt、后端与实际事件；模型文字、工具调用、
+  命令结果与人工决定 MUST 分别记录。未执行的动作不得以描述文字记为成功。
+- 调度 MUST 遵循已批准任务的依赖、权限与后端能力。无匹配能力时停止派发并显示原因；
+  取消、租约过期、进程重启与离线恢复 MUST 按批准的行为进行核对，不得重复执行已确认完成的任务。
+- 每个版本 MUST 具有可演示的完整行为、关联需求与验证证据；未实现能力不得以文档、空目录
+  或后续承诺代替。需求范围调整 MUST 重新提交对应阶段批准。
+- 001 是需求总览，不发布功能版本；002–031 对应 `0.1.0` 至 `0.30.0`。版本是否完成、
+  验收是否通过与是否发布 MUST 分别记录，只有真实完成的项目才能增加进度计数。
+
+## 产品边界与安全要求
+
+- 产品方向采用 Python、uv、PostgreSQL 与 Next.js／TypeScript；具体框架、接口、数据模型、
+  存储与运行参数 MUST 由对应 plan 明确并批准。本文件不提前替代技术方案。
+- 002 的人工引导范围为本机单操作者、单个活动项目与一项研发需求，服务仅绑定 loopback。
+  MUST 使用现有 spec-kit 和人工启动完成真实执行；002 验收并获准发布 `0.1.0` 后，003 起
+  才使用已运行的 Protostar 开发后续版本，不得提前声称自举。
+- 账户、组织隔离与权限能力 MUST 依照对应版本需求实现并通过真实验收；尚未交付的安全能力
+  不得作为扩大访问范围或部署范围的依据。敏感资料处理遵循 `docs/security.md`。
+- 外部 provider、知识服务、MCP 与代码索引的连接 MUST 明确配置和可用能力。索引没有结果、
+  工具未接入或缺少源码 MUST 如实记录，不得推断为已完成相应核验。
+- 项目需求根为 `specs/`，由 `.specify/project-config.json` 配置；单项需求选择由
+  `.specify/feature.json` 或显式 `SPECIFY_FEATURE_DIRECTORY` 决定。需求编号与路径 MUST
+  保持可追踪，未创建的文件只写为计划路径，不形成失效导航。
+
+## 开发流程与版本交付
+
+1. 主线程汇总需求与来源证据；必要探索由子代理只读执行，阶段草稿和写入位置明确指定。
+   spec 草稿只保存于批次专属忽略目录，权威 spec 由主线程编写。
+2. 每层产物 MUST 经主线程亲自审核，修订至确认后交 HumanMiao；上层获批后才下发下一层。
+   plan MUST 覆盖六个模块的能力、实现来源、目标、权威范围、依赖、验收、切换、失败处理
+   与退出条件；引导期的操作、权限、验收与退出条件 MUST 完整。
+3. tasks MUST 从已批准 plan 派生，关联 spec 用户故事，并为每个 job 指定文件范围、命令、
+   依赖与验证。全部任务获批后，常规实施和回测由 task agent 执行；同一文件同时只有一个写入者。
+4. reviewer 用于迭代开始与结束的执行检查；spec、plan、tasks 的审核始终由主线程负责。
+   子代理提供真实执行与验证证据，主线程核对后登记状态。
+5. 每个实现版本完成时 MUST 发送一次 Inbox 通知，使用 OSC 777；标题包含版本号、spec 编号
+   与通过／失败结论，正文包含关键产物路径。同时在当前 tab 输出一行摘要，完成版本的结果
+   以 Markdown 记录，发布批准状态单独注明。通知执行结果 MUST 保存，不得只声明已发送。
+6. 阶段切换、task 完成、子代理返回与阻塞变化时 MUST 展示四项进度：总体 spec 完成数／总数、
+   当前迭代版本、当前 spec 编号、当前 spec 的 plan/tasks 进度条与完成数／总数。
+   分母未知显示“未生成”，不得构造百分比。总体包含 001 总览与 30 个实现版本。
+7. 执行会话不发送周期 OSC 777，周期通知维持既有调度安排；没有版本完成时不得发送版本
+   完成通知。生产发布、合并与关单继续使用独立的人类授权。
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+本文经 HumanMiao 对具体版本批准后生效；生效前保持送审状态。本次正文生成、静态检查与
+文档验证均不构成批准。现有资料交接审批仅适用于其原对象，不授予本文或 001 的批准。
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+constitution 修改 MUST 通过 `/speckit-constitution`，说明原因、影响、对应版本与验证证据，
+并由 HumanMiao 审阅批准。版本采用语义化规则：不兼容原则变更提升 MAJOR，新增或实质扩展
+原则提升 MINOR，澄清与非语义修正提升 PATCH；本次从模板形成首份项目正文，送审版本为 1.0.0。
+
+每次阶段审核 MUST 核对权限、来源、批准对象、实现范围、验证和发布状态。治理规则的变更
+不得由修改阶段产物或检查器间接完成。若治理文本与需求存在冲突，MUST 记录具体条款，
+取得对应批准后修订受影响文件，不得自行降低要求或伪造决定。
+
+### 批准记录
+
+| 字段 | 内容 |
+|---|---|
+| 批准人 | |
+| 批准日期 | |
+| 批准范围 | |
+| 批准依据 | |
+
+批准栏与 Ratified 按当前送审状态留空，填写时只引用已经存在的 HumanMiao 原始决定。
+本版本没有已生效的批准记录。
+
+**Version**: 1.0.0 | **Ratified**: | **Last Amended**: 2026-11-13
+

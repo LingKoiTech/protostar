@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Protostar Pipeline — 需求到运行",
+    "quality_profile": "showcase",
+    "locale": "zh-CN",
+    "output": "protostar-pipeline.workflow.html",
+    "views": [
+      {
+        "id": "approval-chain",
+        "label": "批准链路",
+        "focus": ["requirement", "spec", "spec_gate", "plan", "plan_gate", "tasks", "tasks_gate"],
+        "note": "spec → plan → tasks 逐层编写，HumanMiao 在相邻列批准；越层直接 403。"
+      },
+      {
+        "id": "run-chain",
+        "label": "运行链路",
+        "focus": ["tasks_gate", "run_dispatch", "run_output"],
+        "note": "tasks 批准后显式 POST /runs，worker SELECT FOR UPDATE 唯一领取，OMP 执行后 RunOutput 落库。"
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "approver", "label": "HumanMiao（审批）" },
+    { "id": "pipeline", "label": "PM + 产物编写 + Worker" }
+  ],
+  "phases": [
+    { "id": "intake",    "label": "需求",           "fromCol": 0, "toCol": 0 },
+    { "id": "artifacts", "label": "产物编写与批准", "fromCol": 1, "toCol": 4, "variant": "emphasis" },
+    { "id": "execution", "label": "执行",           "fromCol": 5, "toCol": 5, "variant": "dashed" }
+  ],
+  "groups": [
+    { "id": "approval_loop", "label": "逐层批准（spec→plan→tasks）", "lane": "approver", "fromCol": 2, "toCol": 4, "variant": "security" }
+  ],
+  "mainPath": ["requirement", "spec", "spec_gate", "plan", "plan_gate", "tasks", "tasks_gate", "run_dispatch", "run_output"],
+  "nodes": [
+    { "id": "requirement",  "lane": "pipeline", "col": 0, "type": "backend",    "label": "Requirement", "sublabel": "需求登记",          "width": 112 },
+    { "id": "spec",         "lane": "pipeline", "col": 1, "type": "backend",    "label": "spec.md",     "sublabel": "PM-MorollMiao",     "width": 112 },
+    { "id": "spec_gate",    "lane": "approver", "col": 2, "type": "security",   "label": "批准 spec",   "sublabel": "HumanMiao",         "width": 112 },
+    { "id": "plan",         "lane": "pipeline", "col": 2, "type": "backend",    "label": "plan.md",     "sublabel": "CocoaMiao",         "width": 112 },
+    { "id": "plan_gate",    "lane": "approver", "col": 3, "type": "security",   "label": "批准 plan",   "sublabel": "HumanMiao",         "width": 112 },
+    { "id": "tasks",        "lane": "pipeline", "col": 3, "type": "backend",    "label": "tasks.md",    "sublabel": "VanillaMiao",       "width": 112 },
+    { "id": "tasks_gate",   "lane": "approver", "col": 4, "type": "security",   "label": "批准 tasks",  "sublabel": "HumanMiao",         "width": 112 },
+    { "id": "run_dispatch", "lane": "pipeline", "col": 4, "type": "messagebus", "label": "Run",         "sublabel": "POST /runs",        "width": 112 },
+    { "id": "run_output",   "lane": "pipeline", "col": 5, "type": "database",   "label": "RunOutput",   "sublabel": "stdout/exit_code",  "width": 112 }
+  ],
+  "edges": [
+    { "id": "req-spec",      "from": "requirement",  "to": "spec",         "label": "plan",              "variant": "emphasis" },
+    { "id": "spec-review",   "from": "spec",         "to": "spec_gate",    "label": "送审",              "variant": "security" },
+    { "id": "gate1-plan",    "from": "spec_gate",    "to": "plan",         "label": "approved",          "variant": "emphasis" },
+    { "id": "plan-review",   "from": "plan",         "to": "plan_gate",    "label": "送审",              "variant": "security" },
+    { "id": "gate2-tasks",   "from": "plan_gate",    "to": "tasks",        "label": "approved",          "variant": "emphasis" },
+    { "id": "tasks-review",  "from": "tasks",        "to": "tasks_gate",   "label": "送审",              "variant": "security" },
+    { "id": "gate3-run",     "from": "tasks_gate",   "to": "run_dispatch", "label": "tasks_approval_id", "variant": "emphasis" },
+    { "id": "run-output",    "from": "run_dispatch", "to": "run_output",   "label": "result",            "variant": "emphasis" }
+  ],
+  "cards": [
+    { "dot": "cyan",    "title": "批准链路", "items": ["spec → plan → tasks 顺序批准，越序 403", "每层 SHA 绑定固定版本，approver 由 session 解析"] },
+    { "dot": "emerald", "title": "运行链路", "items": ["tasks 批准后显式 POST /runs 启动", "worker SELECT FOR UPDATE SKIP LOCKED 唯一领取", "stdout/stderr 超 8KB 截断，exit_code=0 → completed"] }
+  ]
+}
