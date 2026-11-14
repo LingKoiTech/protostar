@@ -8,7 +8,10 @@ Protostar 是泠鱼科技（LingKoiTech）的独立公开项目。产品目标�
 |---|---|
 | [文档索引](docs/README.md) | 查阅公开文档与当前项目状态 |
 | [产品需求](docs/PRD.md) | 产品范围、模块行为、UI、002–031 版本路线与验收场景 |
-| [001 spec](specs/001-protostar-server-init-migration/spec.md) | 当前需求基线、来源与迁移规划范围 |
+| [001 spec](specs/001-protostar-server-init-migration/spec.md) | 初始需求基线、来源与迁移规划范围（Draft，待批准） |
+| [002 spec](specs/002-minimum-bootstrap-loop/spec.md) | 最小自举构建循环（0.1.0，已验收） |
+| [003 spec](specs/003-native-requirement-number/spec.md) | 原生需求编号 PRO-N（0.2.0，已验收） |
+| [004 spec](specs/004-requirement-type-priority/spec.md) | 需求类型/优先级/筛选（0.3.0，已验收） |
 | [公开来源清单](docs/sources/README.md) | 来源编号、公开副本、哈希与历史资料分类 |
 | [贡献指南](docs/contributing.md) | Issues、Pull Requests 与公开讨论 |
 | [安全策略](docs/security.md) | 私密漏洞报告与敏感资料处理 |
@@ -37,7 +40,7 @@ Protostar 是泠鱼科技（LingKoiTech）的独立公开项目。产品目标�
 | `protostar_skills` | 本项目的版本化工作流指引，动作通过 CLI 执行 |
 | `protostar_gui` | Next.js／TypeScript 界面：需求、审批、图、会话、知识与统计 |
 
-项目级需求根由 `.specify/project-config.json` 的 `spec_directory` 配置，当前为 `specs/`；当前需求由 `.specify/feature.json` 指向 `specs/001-protostar-server-init-migration`。001 的编号与路径保持不变。
+项目级需求根由 `.specify/project-config.json` 的 `spec_directory` 配置，当前为 `specs/`；活跃需求编号由机器本地的 `.specify/feature.json` 记录（不入库，当前指向 `specs/004-requirement-type-priority`，即最新已批准实施的编号）。
 
 模块级需求按具体模块范围保存到 `protostar_<module>/specs/`，实际选择通过 `SPECIFY_FEATURE_DIRECTORY` 明确指定。
 
