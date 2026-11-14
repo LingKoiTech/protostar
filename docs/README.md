@@ -10,7 +10,7 @@
 - [002 spec](../specs/002-minimum-bootstrap-loop/spec.md)、[002 plan](../specs/002-minimum-bootstrap-loop/plan.md) 与 002 tasks 已落盘，approval-002-spec.json／approval-002-plan.json（plan.md SHA 792b5de0…）与 002 tasks 批准记录已登记。
 - 阶段入口状态仅维护本文件与 [docs/governance.md](governance.md)。根 `AGENTS.md` 与根 `README.md` 的状态更新登记为待 T031 处理，当前文件保持。
 - `.specify/memory/constitution.md` 的 1.0.0 正式正文已生成，待 HumanMiao 审批，尚未生效；批准栏为空，固定基线更新待 T033／T034 的明确批准。
-- [治理提案](governance.md)等待维护者批准，尚未生效；003 及之后的版本尚未开始，没有已批准的 spec／plan／tasks，也没有发布版本。
+- [治理提案](governance.md)等待维护者批准，尚未生效；003（0.2.0，原生需求编号 PRO-N）与 004（0.3.0，需求类型/优先级/筛选）已实施并验收，spec/plan/tasks 产物已批准，发布待 HumanMiao 人工授权。
 
 002 的运行证据来自实际启动的服务与验收脚本输出；本目录其余条目仍以设计说明、需求说明和计划为主，凡涉及“已完成”“已实现”的判断，应以对应 spec 的验收记录与真实运行输出为准。
 

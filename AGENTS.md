@@ -18,7 +18,7 @@ Protostar 是泠鱼科技（LingKoiTech）的独立公开项目。产品目标�
 
 ## 当前工作边界
 
-- 当前只交付文档。`protostar_server` 尚未创建，其余五个模块目录为空；没有可运行的产品、安装命令或发布版本。
+- 002（0.1.0）、003（0.2.0）、004（0.3.0）已实施并验收。`protostar_server`、`protostar_gui`、`protostar_worker` 均已创建且可运行；server 连接集群 PostgreSQL 18.6，gui 为 Next.js 14 App Router，worker 以 stdlib polling 方式领取任务。
 - 001 修订稿仍为 Draft；其当前版本与 constitution 1.0.0 作为 001 plan 输入的人工答复已单独记录在 [input-decision.md](specs/001-protostar-server-init-migration/checklists/input-decision.md)。[001 plan](specs/001-protostar-server-init-migration/plan.md) 与 4 件扩展文档已编写，主线程审核完成，待 HumanMiao 对具体版本审批；plan 批准栏留空，尚未批准或实施，获批后再编写 001 tasks。
 - 上述答复仅作为当前 001 plan 的输入依据，不批准 plan／tasks，也不授权合入、发布或关单。constitution 批准栏未写入，固定基线更新待 T033／T034 的明确批准。
 - spec、plan、tasks 的批准分别绑定对应版本。文档整理授权不扩大为业务开发、数据迁移、部署或发布授权。
@@ -39,7 +39,7 @@ Protostar 是泠鱼科技（LingKoiTech）的独立公开项目。产品目标�
 
 项目级需求根由 `.specify/project-config.json` 的 `spec_directory` 配置，当前为 `specs/`；当前需求由 `.specify/feature.json` 指向 `specs/001-protostar-server-init-migration`。001 的编号与路径保持不变。
 
-模块级需求按具体模块范围保存到 `protostar_<module>/specs/`，实际选择通过 `SPECIFY_FEATURE_DIRECTORY` 明确指定。尚未创建的模块与技能路径使用文本说明，不能当作已存在的导航入口。
+模块级需求按具体模块范围保存到 `protostar_<module>/specs/`，实际选择通过 `SPECIFY_FEATURE_DIRECTORY` 明确指定。
 
 ## 文档与来源处理
 
