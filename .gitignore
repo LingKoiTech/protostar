@@ -226,6 +226,6 @@ protostar_worker/worker/local_state.db
 node_modules/
 
 # Root-level tool artifacts (not product)
-package.json
-package-lock.json
+/package.json
+/package-lock.json
 *.tsbuildinfo
