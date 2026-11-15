@@ -1,0 +1,26 @@
+:where(:root, [data-theme]) {
+  --neo-highlight-edge: inset 0 0 0 1px color-mix(in srgb, var(--neo-rim-highlight) 35%, transparent), inset 1px 1px 2px color-mix(in srgb, var(--neo-rim-highlight) 55%, transparent);
+  --neo-raised-control-edge: inset 0 0 0 1px color-mix(in srgb, var(--neo-rim-highlight) 55%, transparent), inset 1px 1px 2px var(--neo-rim-highlight);
+  --neo-inset-tight: inset 3px 3px 3px var(--neo-rim-inner-shadow), inset -2px -2px 3px var(--neo-light);
+  --neo-raised: 6px 7px 16px var(--neo-shadow-color), -5px -5px 14px var(--neo-outer-light);
+  --neo-raised-sm: 3px 4px 9px var(--neo-shadow-color), -3px -3px 8px var(--neo-outer-light);
+  --neo-raised-xs: 2px 2px 5px var(--neo-shadow-color), -2px -2px 5px var(--neo-outer-light);
+  --neo-button-active-shadow: 0 1px 3px var(--neo-shadow-color), inset 1px 2px 3px var(--neo-shadow-color), var(--neo-highlight-edge);
+  --neo-action-gradient: var(--neo-gradient-brand);
+  --neo-inset-surface: var(--neo-surface);
+  --neo-inset-control-surface: var(--neo-surface);
+  --neo-inset-soft: inset 2px 2px 4px var(--neo-shadow-color), inset -2px -2px 4px var(--neo-light);
+  --neo-colored-convex: linear-gradient(145deg, var(--neo-color-light), transparent 55%, var(--neo-color-shade));
+  --neo-control-shell: var(--neo-surface);
+  --neo-control-shell-shadow: var(--neo-raised-sm), var(--neo-inset-soft);
+  --neo-control-shell-edge: inset 0 0 0 2px color-mix(in srgb, var(--neo-light) 65%, transparent), inset 1px 1px 2px var(--neo-light);
+  --neo-control-well: var(--neo-surface);
+  --neo-control-well-shadow: var(--neo-inset-soft);
+  --neo-control-well-edge: inset 0 0 0 1px var(--neo-light);
+  --neo-thumb-surface: var(--neo-surface);
+  --neo-thumb-shadow: 0 1px 3px var(--neo-shadow-color), inset 0 1px 1px var(--neo-light);
+  --neo-selection-mark: var(--neo-selection-foreground);
+  --neo-selection-mark-shadow: none;
+  --neo-radio-selected-ring: var(--neo-selection-color);
+  --neo-swatch-shadow: var(--neo-raised-sm), var(--neo-highlight-edge);
+}

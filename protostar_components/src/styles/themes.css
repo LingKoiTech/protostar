@@ -1,0 +1,60 @@
+/* Base UI behavior and reference-image Neomorphism surfaces. */
+:where(:root) {
+  --neo-font: Inter, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --neo-font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Noto Sans SC', monospace;
+  --neo-surface: #eef1f4;
+  --neo-ink: #1a3a4a;
+  --neo-muted: #526876;
+  --neo-primary: #2d9ed4;
+  --neo-primary-selection: #1070a8;
+  --neo-action-primary: #1070a8;
+  --neo-selection-color: #1070a8;
+  --neo-selection-foreground: #ffffff;
+  --neo-cyan: #66ccff;
+  --neo-accent-text: #1070a8;
+  --neo-violet: #7c5fbf;
+  --neo-success: #166534;
+  --neo-warning: #854d0e;
+  --neo-error: #b42318;
+  --neo-gradient-brand: linear-gradient(135deg, #2d9ed4, #7c5fbf);
+  --neo-gradient-blue-cyan: linear-gradient(135deg, #2d9ed4, #66ccff);
+  --neo-gradient-cyan-purple: linear-gradient(135deg, #66ccff, #7c5fbf);
+  --neo-gradient-selection: linear-gradient(135deg, #1070a8, #7c5fbf);
+  --neo-action-text-gradient: linear-gradient(135deg, #1070a8, #7c5fbf);
+  --neo-radius-card: 18px;
+  --neo-radius-control: 11px;
+  --neo-light: rgba(255,255,255,.8);
+  --neo-outer-light: var(--neo-light);
+  --neo-shadow-color: rgba(88,105,120,.22);
+  --neo-rim-highlight: rgba(255,255,255,.90);
+  --neo-rim-inner-shadow: rgba(88,105,120,.26);
+  --neo-focus: #1070a8;
+  --neo-unchecked-control-edge: var(--neo-raised-control-edge);
+  --neo-action-foreground: #ffffff;
+  --neo-color-light: rgba(255,255,255,.09);
+  --neo-selection-text: #1a3a4a;
+}
+
+:where([data-theme='dark']) {
+  color-scheme: dark;
+  --neo-surface: #252a31;
+  --neo-ink: #eef8ff;
+  --neo-muted: #b6cbd8;
+  --neo-accent-text: #66ccff;
+  --neo-success: #4ade80;
+  --neo-warning: #fbbf24;
+  --neo-error: #f87171;
+  --neo-light: rgba(255,255,255,.07);
+  --neo-outer-light: rgba(255,255,255,.02);
+  --neo-shadow-color: rgba(5,7,14,.38);
+  --neo-rim-highlight: rgba(225,230,255,.13);
+  --neo-rim-inner-shadow: rgba(5,7,14,.55);
+  --neo-action-primary: #66ccff;
+  --neo-action-foreground: #0f172a;
+  --neo-selection-color: #66ccff;
+  --neo-selection-foreground: #ffffff;
+  --neo-primary-selection: #66ccff;
+  --neo-focus: #66ccff;
+  --neo-unchecked-control-edge: var(--neo-raised-control-edge);
+  --neo-selection-text: #0f172a;
+}
