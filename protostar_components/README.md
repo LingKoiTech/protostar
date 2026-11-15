@@ -11,7 +11,7 @@ Switch Thumb 的定位依据布局尺寸：`translateX(track width - thumb width
 - 行为层使用 [Base UI](https://base-ui.com/)，线性图标使用 [lucide-react](https://lucide.dev/)。
 - API 采用 open-code / 可组合源码组织，不运行 shadcn CLI，也不加载 shadcn 默认主题或 registry。
 - 色彩、光影与组件样式由本包 `src/styles/` 维护，统一从 `src/styles.css` 引入；Gallery 负责布局、示例交互和局部曲率对照。字体栈为 Inter、Noto Sans SC 及系统回退，代码使用 JetBrains Mono 栈；消费方负责加载字体资源。
-- 仓库包含 pnpm workspace consumer path；现有 `protostar_gui` 仍单独用 npm/Next 14，未在本轮改动。GUI 接入需迁到 pnpm workspace、Next `transpilePackages` 并根布局只导入一次 package CSS。
+- `protostar_components/` 独立管理 pnpm workspace，仅包含组件包自身与 Gallery；Python 模块及现有使用 npm/Next 14 的 `protostar_gui` 不纳入此工作区。GUI 接入时需配置 Next `transpilePackages`，并在根布局只导入一次 package CSS。
 
 ## 视觉来源与组件 Gallery
 
@@ -195,7 +195,8 @@ import '@protostar/components/styles.css';
 `gallery/` 是独立的 Vite 工作区，通过 `@protostar/components` 公开入口消费组件。根 `/` 展示色板、中英文字体预设、真实组件、曲率、阴影层级及组合与交互；`/example` 按参考图排列介绍、Dashboard、规范、示例与图标区域。两页共用 `GalleryHeader` 的指南标题、页面导航与主题开关。Pressed 是静态压入组合预设，按钮 `:active` 单独展示；示例注明 CSS 类、变量及用途。未实现区域留白并标注“未实现”。
 
 ```bash
-# 仓库根目录
+# 先进入组件工作区（以下安装、开发、构建和测试命令均在此运行）
+cd protostar_components
 pnpm install
 pnpm dev:components-gallery
 
@@ -211,7 +212,7 @@ pnpm build:components-gallery
 
 ### Gallery 源码提交
 
-组件 Gallery 显示最近一次涉及 `protostar_components/` 的提交短 hash 与 committer 时间（UTC+8）。仅该目录存在已暂存、未暂存或未跟踪修改时，显示“含未提交修改”；其他目录与根目录锁文件不计入范围。
+组件 Gallery 显示最近一次涉及 `protostar_components/` 的提交短 hash 与 committer 时间（UTC+8）。仅该目录存在已暂存、未暂存或未跟踪修改时，显示“含未提交修改”；组件 workspace 配置和锁文件也包含在此范围，其他模块不计入。
 
 Vite 启动或构建时只读获取 Git 信息，固定于该次开发服务或构建产物；开发期间提交或修改文件后，重启服务更新标识。不使用 commit hook，不维护时间文件或手动更新命令，不关联 DESIGN.md。Git 不可用或目录没有提交记录时显示“提交信息不可用”。`/example` 不显示此信息。
 
@@ -228,6 +229,9 @@ pnpm --filter @protostar/components test
 ## 目录
 
 ```
+package.json                   组件包声明与开发命令
+pnpm-workspace.yaml            仅声明 gallery 工作区成员
+pnpm-lock.yaml                 组件包与 Gallery 的依赖锁定
 src/
   components/                  每个 primitive 一个文件
   lib/cx.ts                    className 合并（保留 Base UI 状态函数）
