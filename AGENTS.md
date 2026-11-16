@@ -53,6 +53,17 @@ Protostar 是泠鱼科技（LingKoiTech）的独立公开项目。产品目标�
 - 私人原件、原始路径映射与本机检查记录保存在 Git 忽略目录 `docs/temp/`，不纳入公开导航、自动提交或知识服务写入。
 - 保留许可证与第三方版权声明。使用官方依赖及对应版本资料，不编写替代成熟格式库的自定义 parser。
 
+## 设计文档与 UI 工作流
+
+- UI 设计、评估与修改使用可用的 `impeccable` skill，按对应命令流程执行。
+- 开始 UI 工作前，读取根目录 [PRODUCT.md](PRODUCT.md) 与 [DESIGN.md](DESIGN.md)：
+  - `PRODUCT.md` 记录用户、主要任务、使用场景与产品约束，不替代 spec、plan、tasks 的批准。
+  - `DESIGN.md` 是视觉设计基准；新增页面与组件遵循其配色、字体、布局、光影及状态规范。
+- 设计研究、参考素材、方案等统一保存在 [docs/design/](docs/design/)。
+- [.impeccable/design.json](.impeccable/design.json) 是 `DESIGN.md` 的配套机器可读数据。更新设计基准时同步维护，避免两份资料漂移。
+- Impeccable 的共享配置及设计资料按用途纳入版本管理；不整体忽略 `.impeccable/`。本机配置、临时预览与运行产物按技能规则排除。
+- 设计规范完成、界面实现完成与实际视觉验收分别记录。UI 修改须检查真实渲染结果，并注明未验证的主题、尺寸或交互状态。
+
 ## 执行与验证入口
 
 在对应阶段读取可用的 spec-kit skill；按 spec → plan → tasks → implement 的批准顺序执行。只有 spec 时进行需求核对；plan 与 tasks 齐备后才运行跨产物分析。

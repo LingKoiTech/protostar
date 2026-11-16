@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T19:30:00Z",
+  "title": "将明 · Protostar 设计系统（候选）",
+  "extensions": {
+    "designRevision": "2026-11-15T15:15:54Z",
+    "colorMeta": {
+      "surface": { "role": "neutral", "displayName": "统一基底", "canonical": "#EEF1F4" },
+      "text": { "role": "neutral", "displayName": "蓝灰正文", "canonical": "#1A3A4A", "tonalRamp": ["#1A3A4A", "#293241", "#374151", "#4B5563", "#6B7280", "#9CA3AF", "#DCEEF7", "#EEF8FF"] },
+      "text-muted": { "role": "neutral", "displayName": "辅助文字", "canonical": "#526876" },
+      "primary": { "role": "primary", "displayName": "星云蓝", "canonical": "#2D9ED4", "tonalRamp": ["#12415C", "#176387", "#2082AE", "#2D9ED4", "#55B2E1", "#83C8EA", "#BCE2F2", "#EEF8FF"] },
+      "action-primary": { "role": "primary", "displayName": "文字蓝", "canonical": "#1070A8", "tonalRamp": ["#10334A", "#104B6E", "#105D8B", "#1070A8", "#3D8AB5", "#78ACCA", "#B9D5E4", "#EEF8FF"] },
+      "cyan": { "role": "secondary", "displayName": "强调冰蓝", "canonical": "#66CCFF", "tonalRamp": ["#07527D", "#0877AD", "#159BD4", "#37B3EA", "#66CCFF", "#8FD9FF", "#B8E7FF", "#EAF8FF"] },
+      "accent-violet": { "role": "tertiary", "displayName": "星云紫", "canonical": "#7C5FBF", "tonalRamp": ["#35245B", "#4F3882", "#654AA4", "#7C5FBF", "#9A82CE", "#B7A5DE", "#D9D0EF", "#F5F2FC"] },
+      "accent-sky": { "role": "tertiary", "displayName": "强调蓝", "canonical": "#66CCFF", "tonalRamp": ["#07527D", "#0877AD", "#159BD4", "#37B3EA", "#66CCFF", "#8FD9FF", "#B8E7FF", "#EAF8FF"] },
+      "accent-purple": { "role": "tertiary", "displayName": "星云紫", "canonical": "#7C5FBF", "tonalRamp": ["#35245B", "#4F3882", "#654AA4", "#7C5FBF", "#9A82CE", "#B7A5DE", "#D9D0EF", "#F5F2FC"] },
+      "divider": { "role": "neutral", "displayName": "浅蓝分隔线", "canonical": "#A8D8F0", "tonalRamp": ["#1A3A4A", "#374151", "#4B5563", "#5A7A8A", "#9CA3AF", "#A8D8F0", "#DCEEF7", "#EEF8FF"] },
+      "success": { "role": "semantic", "displayName": "成功", "canonical": "#166534" },
+      "warning": { "role": "semantic", "displayName": "警告", "canonical": "#854D0E" },
+      "error": { "role": "semantic", "displayName": "错误", "canonical": "#B42318" }
+    },
+    "darkColorMeta": {
+      "surface-dark": { "role": "neutral", "displayName": "暗色统一基底", "canonical": "#252A31" },
+      "text-dark": { "role": "neutral", "displayName": "暗色正文", "canonical": "#EEF8FF" },
+      "text-muted-dark": { "role": "neutral", "displayName": "暗色辅助文字", "canonical": "#B6CBD8" },
+      "action-primary-dark": { "role": "primary", "displayName": "暗色行动冰蓝", "canonical": "#66CCFF" },
+      "focus-dark": { "role": "primary", "displayName": "暗色焦点冰蓝", "canonical": "#66CCFF" },
+      "success-dark": { "role": "semantic", "displayName": "暗色成功", "canonical": "#4ADE80" },
+      "warning-dark": { "role": "semantic", "displayName": "暗色警告", "canonical": "#FBBF24" },
+      "error-dark": { "role": "semantic", "displayName": "暗色错误", "canonical": "#F87171" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "H1 / Display", "purpose": "32px / 500 / 1.2；中文 Noto Sans SC，英文 Inter。" },
+      "title": { "displayName": "H2 / Title", "purpose": "24px / 600 / 1.35；区块标题。" },
+      "body": { "displayName": "Body", "purpose": "正文使用 400 字重。" },
+      "secondary": { "displayName": "Secondary", "purpose": "辅助说明与元数据。" },
+      "label": { "displayName": "Label", "purpose": "字段和紧凑控件标签。" },
+      "h3": { "displayName": "H3", "purpose": "18px / 500 / 1.4；分组标题。" },
+      "h4": { "displayName": "H4", "purpose": "15px / 600 / 1.4；内容标题。" },
+      "h5": { "displayName": "H5", "purpose": "13px / 600 / 1.5；紧凑标题。" },
+      "h6": { "displayName": "H6", "purpose": "12px / 600 / 1.4；小标题。" },
+      "caption": { "displayName": "Caption", "purpose": "12px / 400 / 1.4；图注。" },
+      "code": { "displayName": "Code", "purpose": "JetBrains Mono；中文回退 Noto Sans SC。" }
+    },
+    "gradients": [
+      { "name": "brand", "value": "linear-gradient(135deg, #2D9ED4, #7C5FBF)" },
+      { "name": "blue-cyan", "value": "linear-gradient(135deg, #2D9ED4, #66CCFF)" },
+      { "name": "cyan-purple", "value": "linear-gradient(135deg, #66CCFF, #7C5FBF)" }
+    ],
+    "outerLight": { "token": "--neo-outer-light", "light": "var(--neo-light)", "dark": "rgba(255,255,255,.02)", "purpose": "三档 raised 的外部反光；与内影反光和边缘高光独立。" },
+    "materialModel": { "surfaceToken": "--neo-surface", "curvatureScope": "gallery/src/pages/component-gallery/component-gallery.css", "purpose": "组件使用同色基底；Gallery 局部渐变演示曲率，不提供值相同的曲率别名。", "styleLayers": ["src/styles/themes.css", "src/styles/materials.css", "src/styles/components.css"] },
+    "shadows": [
+      { "name": "raised", "value": "6px 7px 16px rgba(88,105,120,.22), -5px -5px 14px rgba(255,255,255,.8)", "purpose": "大浮面。" },
+      { "name": "raised-sm", "value": "3px 4px 9px rgba(88,105,120,.22), -3px -3px 8px rgba(255,255,255,.8)", "purpose": "卡片浮面。" },
+      { "name": "raised-xs", "value": "2px 2px 5px rgba(88,105,120,.22), -2px -2px 5px rgba(255,255,255,.8)", "purpose": "小型控件。" },
+      { "name": "inset-tight", "value": "inset 3px 3px 3px rgba(88,105,120,.26), inset -2px -2px 3px rgba(255,255,255,.8)", "purpose": "集中、过渡较紧的内侧阴影，常用于小型未选控件。" },
+      { "name": "inset-soft", "value": "inset 2px 2px 4px rgba(88,105,120,.22), inset -2px -2px 4px rgba(255,255,255,.8)", "purpose": "静态压入材质与控件外壳内影，不代表按钮 active 状态。" }
+    ],
+    "motion": [{ "name": "control-feedback", "value": "140-160ms ease", "purpose": "轻量状态反馈；支持 reduced motion。" }],
+    "breakpoints": []
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "同色表面、渐变外缘与渐变文字。", "html": "<button class=\"neo-button neo-button--primary\" type=\"button\"><span class=\"neo-button-content\">查看需求</span></button>", "css": ".neo-button--primary{border:2px solid transparent;background:linear-gradient(#EEF1F4,#EEF1F4) padding-box,linear-gradient(135deg,#2D9ED4,#7C5FBF) border-box}.neo-button-content{background:linear-gradient(135deg,#1070A8,#7C5FBF);background-clip:text;color:transparent}" },
+    { "name": "Secondary Button", "kind": "button", "refersTo": "button-secondary", "description": "与画布同色的浮起按钮。", "html": "<button class=\"ds-button\" type=\"button\">返回列表</button>", "css": ".ds-button{min-height:44px;padding:0 20px;border:0;border-radius:11px;background:#EEF1F4;color:#1A3A4A;box-shadow:3px 4px 9px rgba(88,105,120,.22),-3px -3px 8px rgba(255,255,255,.8);cursor:pointer}.ds-button:focus-visible{outline:2px solid #1070A8;outline-offset:3px}" },
+    { "name": "Status Chip", "kind": "chip", "refersTo": "status-chip", "description": "状态同时使用文字与颜色。", "html": "<span class=\"ds-status-chip\">已通过（示例）</span>", "css": ".ds-status-chip{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;background:#EAF4FA;color:#1A3A4A;font:500 12px/1.4 Inter,'Noto Sans SC',system-ui,sans-serif}" },
+    { "name": "Raised Card", "kind": "card", "refersTo": "card", "description": "同色浮面与柔和阴影。", "html": "<section class=\"ds-card\"><h3>需求产物</h3><p>查看关联记录。</p></section>", "css": ".ds-card{padding:20px;border-radius:18px;background:#EEF1F4;color:#1A3A4A;box-shadow:6px 7px 16px rgba(88,105,120,.22),-5px -5px 14px rgba(255,255,255,.8)}" },
+    { "name": "Selected Radio", "kind": "custom", "description": "选中外环及中心点。", "html": "<span class=\"ds-radio-selected\" role=\"radio\" aria-checked=\"true\" aria-label=\"已选\"><i></i></span>", "css": ".ds-radio-selected{box-sizing:border-box;display:inline-grid;width:22px;height:22px;place-items:center;border:2px solid #1070A8;border-radius:50%;background:#EEF1F4}.ds-radio-selected i{width:11px;height:11px;border-radius:50%;background:#1070A8}" }
+  ],
+  "narrative": {
+    "overview": "浅暗主题各以单一基底与柔和光影表现新拟态，保留冰蓝品牌色。",
+    "keyCharacteristics": ["冷灰蓝同色基底", "柔和双侧光影", "Primary 渐变文字和外缘", "Checkbox 填色白钩与 Switch 开启填色", "Radio 选中外环及中心点"],
+    "rules": [
+      { "name": "One Accent Rule", "body": "单个操作区域仅一个主行动。", "section": "colors" },
+      { "name": "Readability Rule", "body": "文字与状态须独立清晰可辨。", "section": "typography" },
+      { "name": "Light Source Rule", "body": "统一左上高光和右下蓝调柔影。", "section": "elevation" }
+    ],
+    "dos": ["使用共享语义变量。", "验证浅色与暗色对比度。", "窄屏重排布局。"],
+    "donts": ["不将强调蓝用于浅色背景的小字号文字。", "不以颜色作为状态的唯一信号。", "不将演示数据当成产品事实。"]
+  }
+}
