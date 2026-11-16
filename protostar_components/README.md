@@ -50,6 +50,8 @@ export function Example() {
 
 对等依赖（peer）：`react` 与 `react-dom` 均支持 `^18.0.0 || ^19.0.0`。
 
+只需要主题和材质令牌的消费者可以分别使用 `@protostar/components/theme-tokens.css` 和 `@protostar/components/material-tokens.css`，无需引入 React 组件或组件样式。两者定义 `--neo-*` 令牌；主题使用 `:where(:root)` 和 `:where([data-theme='dark'])`，材质使用 `:where(:root, [data-theme])`，保持低选择器优先级。`protostar_archify` 在生成独立 HTML 和 SVG 导出时读取这两个公开入口，并对这三个根选择器做受控转换；新增或更改选择器时需同步检查该导出适配。
+
 ## 组件
 
 | 组件 | 渲染元素 | 说明 |

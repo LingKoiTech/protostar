@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/tt-a1i/archify.git",
+  "release": {
+    "tag": "v3.2.0",
+    "url": "https://github.com/tt-a1i/archify/releases/tag/v3.2.0",
+    "publishedAt": "2026-10-19T00:43:00Z",
+    "tagObject": "e62275b6373fa63436e195635835c313ce028b21",
+    "commit": "208acba8d412335185b2056fedf54b3405df43fb"
+  },
+  "distribution": {
+    "url": "https://github.com/tt-a1i/archify/releases/download/v3.2.0/archify.zip",
+    "sha256": "70e210265c59f24dcbdf2a502ff671104b5454e7ee7d3554aecd86bad32384f5",
+    "digestAuthority": "GitHub release asset metadata; archive not downloaded or independently hashed in this investigation"
+  },
+  "license": "MIT",
+  "runtime": "Node.js >=18",
+  "checkedOn": "2026-11-14",
+  "selection": "GitHub releases/latest: latest non-draft, non-prerelease release at investigation time",
+  "scope": "Research baseline only; not an installed skill, git submodule, vendored source tree, or runtime dependency resolver"
+}

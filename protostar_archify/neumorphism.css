@@ -1,0 +1,195 @@
+/* Shared --neo-* tokens are embedded by prototype.mjs, including SVG exports. */
+[data-preset="classic"][data-theme] {
+  --bg: var(--neo-surface);
+  --grid: var(--neo-surface);
+  --canvas-dot: transparent;
+  --text: var(--neo-ink);
+  --text-muted: var(--neo-muted);
+  --text-dim: var(--neo-muted);
+  --text-faint: var(--neo-muted);
+  --panel: var(--neo-surface);
+  --panel-border: var(--neo-rim-highlight);
+  --lane-fill: var(--neo-surface);
+  --lane-stroke: var(--neo-muted);
+  --arrow: var(--neo-muted);
+  --arrow-emphasis: var(--neo-action-primary);
+  --mask: var(--neo-surface);
+  --frontend-fill: var(--neo-surface);
+  --backend-fill: var(--neo-surface);
+  --database-fill: var(--neo-surface);
+  --security-fill: var(--neo-surface);
+  --messagebus-fill: var(--neo-surface);
+  --cloud-fill: var(--neo-surface);
+  --external-fill: var(--neo-surface);
+  --frontend-stroke: var(--neo-action-primary);
+  --backend-stroke: var(--neo-action-primary);
+  --database-stroke: var(--neo-muted);
+  --security-stroke: var(--neo-ink);
+  --messagebus-stroke: var(--neo-violet);
+  --cloud-stroke: var(--neo-action-primary);
+  --external-stroke: var(--neo-muted);
+  --toolbar-bg: var(--neo-surface);
+  --toolbar-border: var(--neo-rim-highlight);
+  --toolbar-text: var(--neo-ink);
+  --toolbar-hover: var(--neo-surface);
+  --toolbar-menu-bg: var(--neo-surface);
+}
+[data-preset="classic"][data-theme="dark"] {
+  --messagebus-stroke: color-mix(in srgb, var(--neo-violet) 55%, var(--neo-ink));
+}
+
+html[data-preset="classic"] body,
+svg[data-node-ui][data-preset="classic"] {
+  font-family: var(--neo-font);
+}
+html[data-preset="classic"] h1 { font-size: 1.5rem; font-weight: 600; line-height: 1.35; }
+html[data-preset="classic"] .card {
+  border: 0;
+  border-radius: var(--neo-radius-card);
+  background: var(--neo-surface);
+  box-shadow: var(--neo-raised-sm), var(--neo-highlight-edge);
+}
+html[data-preset="classic"] .card li { font-size: .8125rem; line-height: 1.6; }
+html[data-preset="classic"] .card li::before { background: var(--neo-action-primary); }
+html[data-preset="classic"] .card-dot { box-shadow: none; }
+html[data-preset="classic"] .diagram-container {
+  border: 0;
+  border-radius: 26px;
+  background: var(--neo-surface);
+  box-shadow: var(--neo-raised), var(--neo-highlight-edge);
+}
+html[data-preset="classic"] .toolbar .toolbar-group,
+html[data-preset="classic"] .toolbar #btn-export,
+html[data-preset="classic"] .diagram-nav,
+html[data-preset="classic"] .toolbar-menu,
+html[data-preset="classic"] .node-outline,
+html[data-preset="classic"] .node-finder {
+  background: var(--neo-surface);
+  border-color: transparent;
+  box-shadow: var(--neo-raised-sm), var(--neo-highlight-edge);
+}
+html[data-preset="classic"] :is(.toolbar, .diagram-nav) button {
+  min-height: 44px;
+  border-radius: var(--neo-radius-control);
+  color: var(--neo-ink);
+}
+html[data-preset="classic"] :is(.toolbar, .diagram-nav) button:hover {
+  color: var(--neo-action-primary);
+}
+html[data-preset="classic"] :is(.toolbar, .diagram-nav) button:active {
+  transform: translateY(1px);
+  box-shadow: var(--neo-button-active-shadow);
+}
+html[data-preset="classic"] .toolbar #btn-export {
+  color: var(--neo-action-primary);
+  border: 1px solid transparent;
+  background: linear-gradient(var(--neo-surface), var(--neo-surface)) padding-box, var(--neo-gradient-brand) border-box;
+}
+html[data-preset="classic"] .toolbar #btn-export::before { background: none; }
+html[data-preset="classic"] :is(button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--neo-focus);
+  outline-offset: 3px;
+}
+html[data-preset="classic"] input {
+  font-family: var(--neo-font);
+  caret-color: var(--neo-focus);
+  background: var(--neo-surface);
+  color: var(--neo-ink);
+}
+html[data-preset="classic"] ::selection {
+  background: var(--neo-selection-color);
+  color: var(--neo-selection-foreground);
+}
+html[data-preset="classic"] * { scrollbar-color: var(--neo-muted) var(--neo-surface); }
+
+/* SVG-prefixed rules survive Archify's standalone export stylesheet filter. */
+/* Viewer help and search remain readable independently of diagram zoom. */
+html[data-preset="classic"] :is(.diagram-guide, .node-finder, .route-probe, .semantic-lens, .overview-map, .node-outline) :is(span, p, small, strong, label, input, button, kbd) {
+  font-size: .75rem;
+}
+html[data-preset="classic"] .pulse-dot { box-shadow: none; }
+html[data-preset="classic"] .overview-map-live { animation: none; }
+svg[data-node-ui][data-preset="classic"] .c-grid { stroke: transparent; }
+svg[data-node-ui][data-preset="classic"] :is(.c-lane-wash, .c-mask) { fill: var(--neo-surface); }
+svg[data-node-ui][data-preset="classic"] :is(.c-lane-rule, .c-lane) {
+  fill: var(--neo-surface);
+  stroke: var(--neo-muted);
+  stroke-opacity: .35;
+  stroke-width: 1px;
+}
+svg[data-node-ui][data-preset="classic"] [data-node-id] > rect[class][rx]:not(.c-mask) {
+  fill: var(--neo-surface);
+  stroke: var(--neo-muted);
+  stroke-width: 1px;
+  filter: drop-shadow(3px 4px 5px var(--neo-shadow-color)) drop-shadow(-3px -3px 4px var(--neo-outer-light));
+}
+/* Legend swatches and node outlines encode the same semantic type. */
+svg[data-node-ui][data-preset="classic"] :is([data-node-id] > rect[class][rx], [data-legend-kind] > rect:not([data-legend-hit])).c-backend { stroke: var(--backend-stroke); }
+svg[data-node-ui][data-preset="classic"] :is([data-node-id] > rect[class][rx], [data-legend-kind] > rect:not([data-legend-hit])).c-security { stroke: var(--security-stroke); }
+svg[data-node-ui][data-preset="classic"] :is([data-node-id] > rect[class][rx], [data-legend-kind] > rect:not([data-legend-hit])).c-messagebus { stroke: var(--messagebus-stroke); }
+svg[data-node-ui][data-preset="classic"] :is([data-node-id] > rect[class][rx], [data-legend-kind] > rect:not([data-legend-hit])).c-database { stroke: var(--database-stroke); }
+svg[data-node-ui][data-preset="classic"] path[data-edge-from] {
+  stroke: var(--neo-muted);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg[data-node-ui][data-preset="classic"] path[data-edge-from]:is(.a-emphasis, .c-edge-emphasis) { stroke: var(--neo-action-primary); }
+svg[data-node-ui][data-preset="classic"] .t-edge-emphasis { fill: var(--neo-ink); font-weight: 600; }
+svg[data-node-ui][data-preset="classic"] .t-primary { fill: var(--neo-ink); }
+svg[data-node-ui][data-preset="classic"] :is(.t-muted, .t-dim, .t-edge-default) { fill: var(--neo-muted); }
+svg[data-node-ui][data-preset="classic"] .semantic-sigil { opacity: 1; }
+svg[data-node-ui][data-preset="classic"] :is(.s-backend, .s-frontend, .s-cloud) { color: var(--backend-stroke); }
+svg[data-node-ui][data-preset="classic"] .s-security { color: var(--security-stroke); }
+svg[data-node-ui][data-preset="classic"] .s-database { color: var(--database-stroke); }
+svg[data-node-ui][data-preset="classic"] .s-messagebus { color: var(--messagebus-stroke); }
+svg[data-node-ui][data-preset="classic"] .s-external { color: var(--neo-muted); }
+svg[data-node-ui][data-preset="classic"] [data-node-id]:focus-visible > rect[class][rx]:not(.c-mask) {
+  stroke: var(--neo-focus);
+  stroke-width: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-preset="classic"] :is(.toolbar, .diagram-nav) button { transition: none; }
+}
+@media (max-width: 420px) {
+  .toolbar { gap: .125rem; }
+  .toolbar button { padding-inline: .45rem; }
+  .toolbar #btn-motion { min-width: 0; padding-inline: .45rem; }
+  .toolbar #theme-label,
+  .toolbar #preset-label,
+  .toolbar #present-label { display: none; }
+}
+@media (max-width: 600px) {
+  .diagram-container[data-wide-diagram="true"]::before {
+    content: "向左滑动查看完整流程";
+    position: absolute;
+    z-index: 4;
+    top: .5rem;
+    right: .5rem;
+    padding: .25rem .5rem;
+    border-radius: 999px;
+    background: var(--neo-surface);
+    color: var(--neo-muted);
+    font: 12px/1.4 var(--neo-font);
+    box-shadow: var(--neo-raised-xs);
+    pointer-events: none;
+  }
+  .diagram-nav {
+    left: .5rem;
+    right: .5rem;
+    width: auto;
+    max-width: none;
+    justify-content: space-between;
+    gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .diagram-nav::-webkit-scrollbar { display: none; }
+  .diagram-nav button { flex: 0 0 auto; min-width: 32px; padding-inline: .25rem; white-space: nowrap; }
+  .diagram-nav #btn-route-probe,
+  .diagram-nav #btn-semantic-lens { font-size: 0; }
+  .diagram-nav #btn-route-probe::after { content: "路"; font-size: 12px; }
+  .diagram-nav #btn-semantic-lens::after { content: "类"; font-size: 12px; }
+  .diagram-nav [data-view="reset"] { min-width: 3.5rem; }
+}

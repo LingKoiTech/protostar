@@ -9,7 +9,9 @@
   "description": "Reusable reference-led Neomorphism components built with Base UI and Lucide React.",
   "exports": {
     ".": "./src/index.ts",
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./theme-tokens.css": "./src/styles/themes.css",
+    "./material-tokens.css": "./src/styles/materials.css"
   },
   "sideEffects": ["./src/styles.css", "./src/styles/*.css"],
   "scripts": {
